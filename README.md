@@ -83,22 +83,22 @@ The approach makes AI development more affordable and accessible, enabling anyon
 
 ## How can you contribute?
 
-## 1. 🚀 Become an AI Host
+### 1. 🚀 Become an AI Host
 - Download **SpiLLIHost** and join our network to host AI models for the community.
 - Currently in beta testing, earn tokens (no monetary value) while hosting resources.
 - Early hosts will be recognized as champions and supporters of the project.
 
-## 2. 💻 Develop Decentralized AI Apps
+### 2. 💻 Develop Decentralized AI Apps
 - Build innovative apps using our getting started guides and tutorials available in the Wiki.
 - Connect your apps to our community network of hosts for global access without high costs.
 - Share your ideas, examples, and projects with the community to get featured!
 
-## 3. 💡 Give Feedback & Ideas
+### 3. 💡 Give Feedback & Ideas
 - Let us know if your run into any issues or suggest features.
 - Share testimonials about how SpiLLI is helpful for you or your team.
 - Don’t forget to star this repository if you like what we’re building! 👍
 
-## 4. 🏆 Become a Sponsor
+### 4. 🏆 Become a Sponsor
 - Support our mission by sponsoring community events, hackathons, or development efforts.
 - Get featured as a supporter in our repository and community resources.
 - Contact us at [community@synaptrix.org](mailto:community@synaptrix.org) to learn more about sponsorship opportunities.
