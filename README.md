@@ -19,7 +19,10 @@ You can download and install SpiLLIHost for Ubuntu and Windows on computers with
 
 ### For Ubuntu:
 
-Download button  =>  [![Download SpiLLI](https://a.fsdn.com/con/app/sf-download-button)](https://sourceforge.net/projects/spilli/files/V0.2.7/SpiLLIHost-0.2.7-Linux-SpiLLIHost.deb/download)
+Download button  => 
+<a href="https://sourceforge.net/projects/spilli/files/V0.2.7/SpiLLIHost-0.2.7-Linux-SpiLLIHost.deb/download" target="_blank">
+  <img src="https://a.fsdn.com/con/app/sf-download-button" alt="Download SpiLLIHost"/>
+</a>
 
 Link: https://sourceforge.net/projects/spilli/files/V0.2.7/SpiLLIHost-0.2.7-Linux-SpiLLIHost.deb/download
 
@@ -39,7 +42,10 @@ With the encryption file now placed in /usr/bin/SpiLLIHost/ your host node becom
 
 ### For Windows:
 
-Download button => [![Download SpiLLI](https://a.fsdn.com/con/app/sf-download-button)](https://sourceforge.net/projects/spilli/files/V0.2.7/SpiLLIHost-0.2.7-win64.exe/download)
+Download button => 
+<a href="https://sourceforge.net/projects/spilli/files/V0.2.7/SpiLLIHost-0.2.7-win64.exe/download" target="_blank">
+  <img src="https://a.fsdn.com/con/app/sf-download-button" alt="Download SpiLLIHost"/>
+</a>
 
 Link: https://sourceforge.net/projects/spilli/files/V0.2.7/SpiLLIHost-0.2.7-win64.exe/download
 
