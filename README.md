@@ -19,14 +19,14 @@ You can download and install SpiLLIHost for Ubuntu and Windows on computers with
 
 ### For Ubuntu:
 
-Download button  =>  [![Download SpiLLI](https://a.fsdn.com/con/app/sf-download-button)](https://sourceforge.net/projects/spilli/files/spillihost/SpiLLIHost-0.2.6-Linux-SpiLLIHost.deb/download)
+Download button  =>  [![Download SpiLLI](https://a.fsdn.com/con/app/sf-download-button)](https://sourceforge.net/projects/spilli/files/V0.2.7/SpiLLIHost-0.2.7-Linux-SpiLLIHost.deb/download)
 
-Link: https://sourceforge.net/projects/spilli/files/spillihost/SpiLLIHost-0.2.6-Linux-SpiLLIHost.deb/download
+Link: https://sourceforge.net/projects/spilli/files/V0.2.7/SpiLLIHost-0.2.7-Linux-SpiLLIHost.deb/download
 
 After the installer (.deb file) is downloaded, to install SpiLLIHost on ubuntu, open a terminal in the directory containing the downloaded file and install using Ubuntu's "apt" package manager
 
 ```
-sudo apt install SpiLLIHost-0.2.6-Linux-SpiLLIHost.deb
+sudo apt install ./SpiLLIHost-0.2.7-Linux-SpiLLIHost.deb
 ```
 
 SpiLLIHost uses a personalized encryption key given by a personalized SpiLLIHost.pem. Your host node cannot function without this key. To make the host usable, download the SpiLLIHost Encryption file from https://agents.syanptrix.org/dechat (Click on the download SpiLLIHost button on the page and click on the "Download Host Encryption" button). 
@@ -39,9 +39,9 @@ With the encryption file now placed in /usr/bin/SpiLLIHost/ your host node becom
 
 ### For Windows:
 
-Download button => [![Download SpiLLI](https://a.fsdn.com/con/app/sf-download-button)](https://sourceforge.net/projects/spilli/files/spillihost/SpiLLIHost-0.2.6-win64.exe/download)
+Download button => [![Download SpiLLI](https://a.fsdn.com/con/app/sf-download-button)](https://sourceforge.net/projects/spilli/files/V0.2.7/SpiLLIHost-0.2.7-win64.exe/download)
 
-Link: https://sourceforge.net/projects/spilli/files/spillihost/SpiLLIHost-0.2.6-win64.exe/download
+Link: https://sourceforge.net/projects/spilli/files/V0.2.7/SpiLLIHost-0.2.7-win64.exe/download
 
 To install, double click on the installer to run the setup. (The installer is not currently verfied with a windows signature and windows will warn you about this. You can ignore the warning and proceed with running the setup. This is not indicative of any malware, just requires us to register the installer with a digital signature. The fix for this will be coming soon).
 
