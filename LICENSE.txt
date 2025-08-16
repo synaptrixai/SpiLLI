@@ -1,9 +1,9 @@
 Proprietary Software License Agreement
 IMPORTANT: Please read this license agreement carefully before using this software.
 
-This Software License Agreement ("Agreement") is a legal agreement between you (either an individual or a single entity) and Synaptrix Technology Pvt. Ltd. ("Licensor") for the proprietary software product named SpiLLIHost ("Software").
+This Software License Agreement ("Agreement") is a legal agreement between you (either an individual or a single entity) and Synaptrix Technology Pvt. Ltd. ("Licensor") for the proprietary software product named SpiLLI comprising of software omponents ("Software").
 
-By installing, copying, or otherwise using the Software, you agree to be bound by the terms of this Agreement.
+By installing, copying, or otherwise using the Software and its components, you agree to be bound by the terms of this Agreement.
 
 1. Grant of License
 Licensor hereby grants you a limited, non-exclusive, non-transferable license to install and use the Software on a single computer system for your internal purposes only.
