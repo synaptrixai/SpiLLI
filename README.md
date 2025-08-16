@@ -17,7 +17,7 @@ SpiLLI SDK currently provides an interface to python 3.12 (support for other pyt
 
 You can download and install SpiLLIHost for Ubuntu and Windows on computers with a NVidia GPU by downloading the corresponding installers from our current mirrors on SourceForge using the buttons / links below:
 
-### For Ubuntu:
+## For Ubuntu:
 
 Download button  => 
 <a href="https://sourceforge.net/projects/spilli/files/V0.2.7/SpiLLIHost-0.2.7-Linux-SpiLLIHost.deb/download" target="_blank">
@@ -40,7 +40,7 @@ sudo mv ./SpiLLIHost.pem /usr/bin/SpiLLIHost/
 
 With the encryption file now placed in /usr/bin/SpiLLIHost/ your host node becomes functional. The encryption key is used to secure communication between the host and peer nodes, and also is used to keep track of usage of host nodes on the network to allow host nodes to be compensated with credits in the future (more on this later below).
 
-### For Windows:
+## For Windows:
 
 Download button => 
 <a href="https://sourceforge.net/projects/spilli/files/V0.2.7/SpiLLIHost-0.2.7-win64.exe/download" target="_blank">
@@ -61,7 +61,7 @@ pip install --index-url https://tech.synaptrix.org/pypi/ --client-cert ./SpiLLI.
 
 If you need to install python, you can follow any of the guides on the internet for your operating system. Just make sure that you are installing python version 3.12 as this is the only one currently supported (support for other versions coming soon).
 
-The SpiLLI SDK also uses a SpiLLI.pem encryption file similar to the one used for SpiLLIHost above and can be downloaded from  https://agents.syanptrix.org/dechat by clicking the download SpiLLI SDK button and then click download SDK encryption.
+The SpiLLI SDK also uses a SpiLLI.pem encryption file similar to the one used for SpiLLIHost above and can be downloaded from  https://agents.synaptrix.org/dechat by clicking the download SpiLLI SDK button and then click download SDK encryption.
 
 # How does SpiLLI work?
 
@@ -80,3 +80,25 @@ The network works through **three key principles**:
 This approach reduces costs for developers while making it easier for anyone to contribute computing resources to power AI applications.
 
 The approach makes AI development more affordable and accessible, enabling anyone to contribute computing resources and developers to rely on a robust, decentralized network instead of centralized cloud services.
+
+# How can you contribute?
+
+## 1. 🚀 Become an AI Host
+- Download **SpiLLIHost** and join our network to host AI models for the community.
+- Currently in beta testing, earn tokens (no monetary value) while hosting resources.
+- Early hosts will be recognized as champions and supporters of the project.
+
+## 2. 💻 Develop Decentralized AI Apps
+- Build innovative apps using our getting started guides and tutorials available in the Wiki.
+- Connect your apps to our community network of hosts for global access without high costs.
+- Share your ideas, examples, and projects with the community to get featured!
+
+## 3. 💡 Give Feedback & Ideas
+- Let us know if your run into any issues or suggest features.
+- Share testimonials about how SpiLLI is helpful for you or your team.
+- Don’t forget to star this repository if you like what we’re building! 👍
+
+## 4. 🏆 Become a Sponsor
+- Support our mission by sponsoring community events, hackathons, or development efforts.
+- Get featured as a supporter in our repository and community resources.
+- Contact us at [community@synaptrix.org](mailto:community@synaptrix.org) to learn more about sponsorship opportunities.
