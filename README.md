@@ -63,7 +63,7 @@ If you need to install python, you can follow any of the guides on the internet 
 
 The SpiLLI SDK also uses a SpiLLI.pem encryption file similar to the one used for SpiLLIHost above and can be downloaded from  https://agents.synaptrix.org/dechat by clicking the download SpiLLI SDK button and then click download SDK encryption.
 
-# How does SpiLLI work?
+## How does SpiLLI work?
 
 SpiLLI is a decentralized network of AI hosts and AI users. When you download and install SpiLLIHost on a computer, the computer becomes a host node on the network. Other computers (not excluding the host computer) can run applications built with SpiLLI SDK that can use AI models hosted on any of the host nodes in the network. 
 
@@ -81,7 +81,7 @@ This approach reduces costs for developers while making it easier for anyone to 
 
 The approach makes AI development more affordable and accessible, enabling anyone to contribute computing resources and developers to rely on a robust, decentralized network instead of centralized cloud services.
 
-# How can you contribute?
+## How can you contribute?
 
 ## 1. 🚀 Become an AI Host
 - Download **SpiLLIHost** and join our network to host AI models for the community.
