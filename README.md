@@ -63,9 +63,20 @@ If you need to install python, you can follow any of the guides on the internet 
 
 The SpiLLI SDK also uses a SpiLLI.pem encryption file similar to the one used for SpiLLIHost above and can be downloaded from  https://agents.syanptrix.org/dechat by clicking the download SpiLLI SDK button and then click download SDK encryption.
 
-# How does it work?
+# How does SpiLLI work?
 
-Here's a quick summary:
+SpiLLI is a decentralized network of AI hosts and AI users. When you download and install SpiLLIHost on a computer, the computer becomes a host node on the network. Other computers (not excluding the host computer) can run applications built with SpiLLI SDK that can use AI models hosted on any of the host nodes in the network. 
 
-SpiLLI operates on a decentralized network of AI hosts and AI users. When you download and install SpiLLIHost on a computer, the computer becomes a host node on the network. Other computers (not excluding the host computer) can run applications built with SpiLLI SDK that can use AI models hosted on any of the host nodes in the network. The applications form network connections between the best available hosts and application nodes in real time and dynamically adapt the network as the network and application demands evolve.
+SpiLLI allows applications to connect directly to the best available computing resources, without relying on centralized cloud providers.
 
+The network works through **three key principles**:
+
+1. **Dynamic Resource Allocation**: Applications automatically discover and connect to the best available hosts based on current demand, performance, and proximity
+
+2. **Decentralized Infrastructure**: Computing resources are distributed across a global network of participating hosts, creating redundancy and fault tolerance
+
+3. **Real-time Adaptation**: The network continuously optimizes connections and resource allocation as conditions change, ensuring optimal performance
+
+This approach reduces costs for developers while making it easier for anyone to contribute computing resources to power AI applications.
+
+The approach makes AI development more affordable and accessible, enabling anyone to contribute computing resources and developers to rely on a robust, decentralized network instead of centralized cloud services.
