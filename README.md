@@ -102,3 +102,32 @@ The approach makes AI development more affordable and accessible, enabling anyon
 - Support our mission by sponsoring community events, hackathons, or development efforts.
 - Get featured as a supporter in our repository and community resources.
 - Contact us at [community@synaptrix.org](mailto:community@synaptrix.org) to learn more about sponsorship opportunities.
+
+
+# Getting Started
+
+## As an AI Host
+
+### Installation
+Download and install the SpiLLIHost app from the button above. The installation will automatically set up a host service on your computer.
+
+### Managing Services
+- **Windows:** Control the start/stop of the host service through Services settings.
+- **Ubuntu:** Use `systemctl` commands to manage the service.
+
+The host service typically runs by default after installation.
+
+### Hosting Models
+1. Visit [Agents Portal](https://agents.synaptrix.org/dechat/) and use the "Manage Hosted Models" button to:
+   - View your host nodes
+   - Add/remove models
+2. Alternatively, you can directly place a `.gguf` model files in the `Models` directory located at:
+   - **Ubuntu:** `/usr/bin/SpiLLIHost`
+   - **Windows:** `C:/Program Files (x86)/SpiLLIHost`
+
+## As an AI Developer
+Explore our [Tutorials](Tutorials) folder for example applications and ideas to help you develop your own projects. You can add this repository to your watch list or follow us on LinkedIn. We regularly update you via the Discussions section in the repository and via posts on LinkedIn on new tutorials, implementations and capability updates as the project advances. We will also be happy to feature your projects and ideas built using SpiLLI on these pages, just contact us with a draft on community@synaptrix.org or send us a pull request on this repository. 
+
+## As a General AI User
+
+You can explore AI models and chat with models on the decentralized network using the [Agents Portal](https://agents.synaptrix.org/dechat/). Note you'll need to setup your encryption by importing a .p12 encryption file to interact with the models on the Agents Portal. The encryption protects your data over the network such that only you have access to your data. The steps to getting and importing the encryption file to your browser are shown in the Getting Started section on the Agents Portal. Your browser will prompt you to select the encryption file to use when interactive with the portal after it has been setup. 
