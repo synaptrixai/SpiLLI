@@ -126,7 +126,7 @@ The host service typically runs by default after installation.
    - **Windows:** `C:/Program Files (x86)/SpiLLIHost`
 
 ## As an AI Developer
-Explore our [Tutorials](Tutorials) folder for example applications and ideas to help you develop your own projects. You can add this repository to your watch list or follow us on LinkedIn. We regularly update you via the Discussions section in the repository and via posts on LinkedIn on new tutorials, implementations and capability updates as the project advances. We will also be happy to feature your projects and ideas built using SpiLLI on these pages, just contact us with a draft on community@synaptrix.org or send us a pull request on this repository. 
+Explore our [Tutorials](Tutorials) folder for example applications and ideas to help you develop your own projects. You can add this repository to your watch list or follow us on [LinkedIn](https://www.linkedin.com/company/synaptrix-ai). We will regularly update you via the Discussions section in the repository and via posts on LinkedIn on new tutorials, implementations and capability updates as the project advances. We will also be happy to feature your projects and ideas built using SpiLLI on these pages, just contact us with a draft on community@synaptrix.org or send us a pull request on this repository. 
 
 ## As a General AI User
 
