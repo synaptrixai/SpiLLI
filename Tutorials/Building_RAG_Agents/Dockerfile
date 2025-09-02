@@ -16,7 +16,7 @@ RUN apt-get update && \
         python3-pip \
         software-properties-common \
         wget \
-        zip jq unzip xvfb
+        zip jq unzip xvfb dos2unix
 
 # Create working directory
 WORKDIR /app
@@ -58,6 +58,7 @@ RUN ldconfig
 
 # Copy entrypoint script for Jupyter setup
 COPY entrypoint.sh ./
+RUN dos2unix ./entrypoint.sh
 RUN chmod +x ./entrypoint.sh
 
 # Expose ports 8080 and 8888 (Jupyter)
