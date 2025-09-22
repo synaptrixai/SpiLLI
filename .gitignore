@@ -162,3 +162,5 @@ cython_debug/
 #.idea/
 *.pem
 catch_log.txt
+Tutorials/Building_RAG_Agents/scripts/AgenticRAG.pdf
+Tutorials/Building_RAG_Agents/scripts/tutorial.db
