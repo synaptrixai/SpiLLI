@@ -1,5 +1,9 @@
 services:
+<<<<<<< HEAD
   spilli-rag-agent:
+=======
+  rag-agent:
+>>>>>>> refs/remotes/origin/main
     image: synaptrixai/spilli-rag-tutorials:latest
     ports:
       - "8080:8080"

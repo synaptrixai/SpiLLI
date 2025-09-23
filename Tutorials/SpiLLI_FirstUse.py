@@ -9,9 +9,9 @@ res = llm.run({"prompt":"You are a helpful AI programmer","query":"Can you show 
 #%%
 print(res)
 # %% You can request another model in parallel
-llm1 = spin.request({"model":"deepseek-r1:32b"})
+# llm1 = spin.request({"model":"deepseek-r1:32b"})
 # %% Run another query
-res = llm1.run({"prompt":"You are a helpful AI programmer","query":"Can you show me how to multiply two matrices using numpy"})
+# res = llm1.run({"prompt":"You are a helpful AI programmer","query":"Can you show me how to multiply two matrices using numpy"})
 # %%
-print(res)
+# print(res)
 # %%
