@@ -1,6 +1,6 @@
 services:
   rag-agent:
-    build: .
+    image: synaptrixai/spilli-rag-tutorials:latest
     ports:
       - "8080:8080"
       - "8888:8888"
