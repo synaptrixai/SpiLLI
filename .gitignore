@@ -162,3 +162,5 @@ cython_debug/
 #.idea/
 *.pem
 catch_log.txt
+*.pdf
+*.db

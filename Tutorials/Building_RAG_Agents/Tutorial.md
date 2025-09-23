@@ -36,7 +36,7 @@ docker compose up -d
 ```
 This will install the necessary software and run the docker image that you can use for this tutorial. If you want to understand what the docker image installs, or if you want to install all the components manually, you can follow the Direct setup below.
 
-### Direct setup
+### Direct setup (Not needed if you followed the Docker setup)
 
 Install:
 1. Python 3.12
