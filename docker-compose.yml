@@ -5,11 +5,11 @@ services:
       - "8080:8080"
       - "8888:8888"
     volumes:
-      - ./scripts:/app/scripts # Mount your Python scripts directory
+      - ./Tutorials:/app/Tutorials # Mount your Python scripts directory
       - ./SpiLLI.pem:/root/.spilli/SpiLLI.pem # Mount the encryption file
       - ./chroma_db:/app/chroma_db # Persistent storage for ChromaDB
     environment:
-      - PYTHONPATH=/app/scripts
+      - PYTHONPATH=/app/Tutorials
       - JUPYTER_TOKEN=  # Disables token authentication (use with caution)
     # Add TTY allocation for better process management
     tty: true

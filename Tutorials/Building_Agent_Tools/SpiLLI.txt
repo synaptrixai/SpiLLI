@@ -1,0 +1,1 @@
+SpiLLI is used with LangChain to provide LLMs that can decide when and which tool to use and then generate a response using a chain-of-thought approach.
