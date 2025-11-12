@@ -56,7 +56,7 @@ To install, double click on the installer to run the setup. (The installer is no
 If you have python 3.12 and pip installed you can install the SDK simply by running
 
 ```
-pip install --index-url https://tech.synaptrix.org/pypi/ --client-cert ./SpiLLI.pem --upgrade SpiLLI
+pip install --index-url https://well.synaptrix.org --upgrade SpiLLI
 ```
 
 If you need to install python, you can follow any of the guides on the internet for your operating system. Just make sure that you are installing python version 3.12 as this is the only one currently supported (support for other versions coming soon).

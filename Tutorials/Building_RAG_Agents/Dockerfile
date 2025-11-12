@@ -48,9 +48,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 # Install SpiLLI SDK (will need the .pem file at build time)
 COPY SpiLLI.pem /root/.spilli/
-RUN pip install --index-url https://tech.synaptrix.org/pypi/ \
-    --client-cert /root/.spilli/SpiLLI.pem \
-    --upgrade SpiLLI
+RUN pip install --index-url https://well.synaptrix.org --upgrade SpiLLI
 
 # Make sure all packages are properly installed
 RUN ldconfig

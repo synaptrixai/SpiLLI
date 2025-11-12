@@ -2,7 +2,7 @@ services:
   rag-agent:
     image: synaptrixai/spilli-rag-tutorials:latest
     ports:
-      - "8080:8080"
+      - "8082:8080"
       - "8888:8888"
     volumes:
       - ./Tutorials:/app/Tutorials # Mount your Python scripts directory

@@ -1,9 +1,11 @@
-from langchain.llms.base import LLM
+# from langchain.llms.base import LLM
+from langchain_core.language_models.llms import BaseLLM
+from langchain_core.outputs import Generation, LLMResult
 from typing import Optional, List, Any, Dict
 # from Spin import request_model  # Assuming `request_model` is how you query Spin
 from SpiLLI.SpinLLI import Spin
 
-class SpinLLM(LLM):
+class SpinLLM(BaseLLM):
     model_name: str
     temperature: float
     max_tokens: int
@@ -24,7 +26,14 @@ class SpinLLM(LLM):
         """
         self.spin = spin = Spin(self.encryption_path)
         self.llm = self.spin.request({"model":self.model_name})   
+    def _generate(self, prompts, stop=None, **kwargs) -> LLMResult:
+        generations = []
+        for prompt in prompts:
+            text = self._call(prompt, stop=stop, **kwargs)
+            gen = Generation(text=text)
+            generations.append([gen])
 
+        return LLMResult(generations=generations)
     def _call(self, prompt: str, stop: Optional[List[str]] = None, **kwargs) -> str:
         """Send a request to Spin and return the response."""
         # response = request_model(
