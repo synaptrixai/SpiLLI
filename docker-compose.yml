@@ -6,7 +6,7 @@ services:
       - "8888:8888"
     volumes:
       - ./Tutorials:/app/Tutorials # Mount your Python scripts directory
-      - ./SpiLLI.pem:/root/.spilli/SpiLLI.pem # Mount the encryption file
+      - ./SpiLLI_Community.pem:/root/.spilli/SpiLLI.pem # Mount the encryption file
       - ./chroma_db:/app/chroma_db # Persistent storage for ChromaDB
     environment:
       - PYTHONPATH=/app/Tutorials
