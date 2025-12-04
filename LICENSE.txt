@@ -1,7 +1,7 @@
 Proprietary Software License Agreement
 IMPORTANT: Please read this license agreement carefully before using this software.
 
-This Software License Agreement ("Agreement") is a legal agreement between you (either an individual or a single entity) and Synaptrix Technology Pvt. Ltd. ("Licensor") for the proprietary software product named SpiLLI comprising of software omponents ("Software").
+This Software License Agreement ("Agreement") is a legal agreement between you (either an individual or a single entity) and Synaptrix Technology Pvt. Ltd. ("Licensor") for the proprietary software product named SpiLLI comprising of software components ("Software").
 
 By installing, copying, or otherwise using the Software and its components, you agree to be bound by the terms of this Agreement.
 
