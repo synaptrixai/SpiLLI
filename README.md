@@ -37,13 +37,13 @@ This reduces costs and increases accessibility for developers, users and AI rese
 
 ### 1️⃣ Running Applications and Tutorials in a pre-configured, sandboxed environment
 
-The repository ships a Docker image with all required dependencies installed for easy startup. If you have Docker installed, you can run the tutorials using the following steps:
+The repository ships a [Docker image](https://hub.docker.com/r/synaptrixai/spilli-rag-tutorials) with all required dependencies installed for easy startup. If you have [Docker](https://docs.docker.com/get-started/introduction/get-docker-desktop/) installed, you can run the tutorials using the following steps:
 
 | Step | Command |
 |------|---------|
 | Clone the repo | `git clone https://github.com/synaptrixai/SpiLLI.git` |
 | Download your PEM encryption | Download a personalized encryption file from [SpiLLI Demo](https://agents.synaptrix.org/dechat) Put the downloaded `.pem` file next to the `docker-compose.yml` file in the cloned repository |
-| Start Docker | `docker compose up` |
+| Start Docker | `docker compose up` (or sometimes `docker-compose up` on windows) |
 | Access Jupyter | Open <http://127.0.0.1:8888/lab> to access and run the tutorials |
 
 **Sample tutorials**
