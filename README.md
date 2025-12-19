@@ -79,10 +79,10 @@ The repository ships a Docker image with all required dependencies installed for
 #### Installing SpiLLIHost
 
 - **Ubuntu**  
-  1. Download the `.deb`: <https://sourceforge.net/projects/spilli/files/v0.3.1/SpiLLIHost-0.3.1-Linux-SpiLLIHost.deb/download>  
+  1. Download the `.deb`: <https://github.com/synaptrixai/SpiLLI/releases/download/v0.3.2/SpiLLIHost-0.3.2-Linux-SpiLLIHost.deb>
   2. Install:  
      ```bash
-     sudo apt install ./SpiLLIHost-0.3.1-Linux-SpiLLIHost.deb
+     sudo apt install ./SpiLLIHost-0.3.2-Linux-SpiLLIHost.deb
      ```  
   3. Move the PEM file to the host directory:  
      ```bash
@@ -90,7 +90,7 @@ The repository ships a Docker image with all required dependencies installed for
      ```  
 
 - **Windows**  
-  1. Download the installer: <https://sourceforge.net/projects/spilli/files/v0.3.1/SpiLLIHost-0.3.1-win64.exe/download>  
+  1. Download the installer: <https://github.com/synaptrixai/SpiLLI/releases/download/v0.3.2/SpiLLIHost-0.3.2-win64.exe>  
   2. Run the setup. Ignore the unsigned‑signature warning.  
   3. Select your `SpiLLIHost_Community.pem` during the installation process and follow prompts to complete the installation.
 
@@ -152,8 +152,8 @@ pip install --index-url https://well.synaptrix.org --upgrade SpiLLI
 ## Running as an AI User
 
 * Use the **Agents Portal**: <https://agents.synaptrix.org/dechat>.  
-* Import your `.p12` encryption file to interact securely (instructions on the portal).  
-* The portal prompts you to select the file once you start interacting.
+* Import your `.p12` encryption file to interact securely ("Getting Started" instructions on the portal).  
+* The portal prompts you to select the encryption file once you start interacting to secure your AI pipeline.
 
 ---
 
