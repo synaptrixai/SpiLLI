@@ -101,7 +101,7 @@ To manage the **Service**
    SpiLLIHost service in the Windows Services UI to open a dialog to start/stop/restart/or check the service status.  
    - **Ubuntu**: Use systemctl in the terminal as admin. `sudo systemctl start [ other options: stop/restart/status] SpiLLIHost.service`.  
 
-> **Troubleshooting** The SpiLLIHost service will not run if there is no encryption file provided. If the service fails to start check if your downloaded pem file is stored in the installed directory ("/usr/bin/SpiLLI" for Ubuntu, "C:\Program Files (x86)\SpiLLIHost\bin" by default on Windows). The pem file should be named as  SpiLLIHost_Community.pem
+> **Troubleshooting** The SpiLLIHost service will not run if there is no encryption file provided. If the service fails to start check if your downloaded pem file is stored in the installed directory ("/usr/bin/SpiLLIHost" for Ubuntu, "C:\Program Files (x86)\SpiLLIHost\bin" by default on Windows). The pem file should be named as  SpiLLIHost_Community.pem
 
 > **⚠️ Security** The pem file you download provides personalized client and host side encryption ensuring that the data in transit over the network is only accessible by you. So do not share the file publicly or commit it to the repository.
 
