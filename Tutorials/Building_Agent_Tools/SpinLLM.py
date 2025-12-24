@@ -7,6 +7,7 @@ from langchain_core.outputs import ChatGeneration
 from SpiLLI.SpinLLI import Spin
 import json
 import re
+import asyncio
 
 class SpinChatModel(BaseChatModel):
     """
@@ -32,14 +33,14 @@ class SpinChatModel(BaseChatModel):
     # -----------------------------
     # LangChain ChatModel interface
     # -----------------------------
-    def _generate(
+    async def _agenerate(
         self, messages: List[BaseMessage], stop: Optional[List[str]] = None, **kwargs
     ) -> ChatResult:
         """
         Converts messages to a prompt, runs Spin, and returns a ChatResult with AIMessage.
         """
         prompt = self._convert_messages_to_prompt(messages)
-        response_text = self._call_spin(prompt)
+        response_text = await self._call_spin(prompt)
         # Detect LangChain-style tool call
         action_match = re.search(r"Action:\s*(\w+)", response_text)
         input_match = re.search(r"Action Input:\s*(\{.*\})", response_text, re.DOTALL)
@@ -60,8 +61,35 @@ class SpinChatModel(BaseChatModel):
         else:
             msg = AIMessage(content=response_text)
         return ChatResult(generations=[ChatGeneration(message=msg)])
-
-    def _call_spin(self, prompt: str) -> str:
+    def _generate(
+        self, messages: List[BaseMessage], stop: Optional[List[str]] = None, **kwargs
+    ) -> ChatResult:
+        """
+        Converts messages to a prompt, runs Spin, and returns a ChatResult with AIMessage.
+        """
+        prompt = self._convert_messages_to_prompt(messages)
+        response_text = asyncio.run(self._call_spin(prompt))
+        # Detect LangChain-style tool call
+        action_match = re.search(r"Action:\s*(\w+)", response_text)
+        input_match = re.search(r"Action Input:\s*(\{.*\})", response_text, re.DOTALL)
+    
+        if action_match and input_match:
+            tool_name = action_match.group(1)
+            try:
+                tool_args = json.loads(input_match.group(1))
+            except json.JSONDecodeError:
+                tool_args = {"input": input_match.group(1)}
+    
+            tool_call = ToolCall(
+                id=f"call_{tool_name}_{hash(response_text) % 10000}",
+                name=tool_name,
+                args=tool_args,
+            )
+            msg = AIMessage(content="", tool_calls=[tool_call])
+        else:
+            msg = AIMessage(content=response_text)
+        return ChatResult(generations=[ChatGeneration(message=msg)])
+    async def _call_spin(self, prompt: str) -> str:
         """
         Sends the prompt to Spin backend and returns the response.
         Augments prompt with tools if any are bound.
@@ -72,7 +100,7 @@ class SpinChatModel(BaseChatModel):
             tool_text = self._format_tools(self.tools)
             payload["query"] = tool_text + "\n\n" + prompt
         # print('Payload: ',payload)
-        return self.llm.run(payload)
+        return await self.llm.run(payload)
 
     def _convert_messages_to_prompt(self, messages: list) -> str:
         text = ""
