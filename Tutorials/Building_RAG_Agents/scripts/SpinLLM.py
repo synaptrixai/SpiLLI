@@ -4,6 +4,7 @@ from langchain_core.outputs import Generation, LLMResult
 from typing import Optional, List, Any, Dict
 # from Spin import request_model  # Assuming `request_model` is how you query Spin
 from SpiLLI.SpinLLI import Spin
+import asyncio
 
 class SpinLLM(BaseLLM):
     model_name: str
@@ -34,6 +35,15 @@ class SpinLLM(BaseLLM):
             generations.append([gen])
 
         return LLMResult(generations=generations)
+
+    async def _agenerate(self, prompts, stop=None, **kwargs) -> LLMResult:
+        generations = []
+        for prompt in prompts:
+            text = await self._acall(prompt, stop=stop, **kwargs)
+            gen = Generation(text=text)
+            generations.append([gen])
+
+        return LLMResult(generations=generations)
     def _call(self, prompt: str, stop: Optional[List[str]] = None, **kwargs) -> str:
         """Send a request to Spin and return the response."""
         # response = request_model(
@@ -43,7 +53,17 @@ class SpinLLM(BaseLLM):
         #     max_tokens=self.max_tokens,
         #     **kwargs
         # )
-        return self.llm.run({"prompt":"","query":prompt})
+        return asyncio.run(self.llm.run({"prompt":"","query":prompt}))
+    async def _acall(self, prompt: str, stop: Optional[List[str]] = None, **kwargs) -> str:
+        """Send a request to Spin and return the response."""
+        # response = request_model(
+        #     model=self.model_name,
+        #     prompt=prompt,
+        #     temperature=self.temperature,
+        #     max_tokens=self.max_tokens,
+        #     **kwargs
+        # )
+        return await self.llm.run({"prompt":"","query":prompt})
 
     @property
     def _identifying_params(self) -> Dict[str, Any]:
