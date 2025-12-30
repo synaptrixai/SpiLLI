@@ -79,10 +79,10 @@ The repository ships a [Docker image](https://hub.docker.com/r/synaptrixai/spill
 #### Installing SpiLLIHost
 
 - **Ubuntu**  
-  1. Download the `.deb`: <https://github.com/synaptrixai/SpiLLI/releases/download/v0.3.3/SpiLLIHost-0.3.3-Linux-SpiLLIHost.deb>
+  1. Download the `.deb`: <https://github.com/synaptrixai/SpiLLI/releases/download/v0.3.4/SpiLLIHost-0.3.4-Linux-SpiLLIHost.deb>
   2. Install:  
      ```bash
-     sudo apt install ./SpiLLIHost-0.3.3-Linux-SpiLLIHost.deb
+     sudo apt install ./SpiLLIHost-0.3.4-Linux-SpiLLIHost.deb
      ```  
   3. Move the PEM file to the host directory:  
      ```bash
@@ -90,7 +90,7 @@ The repository ships a [Docker image](https://hub.docker.com/r/synaptrixai/spill
      ```  
 
 - **Windows**  
-  1. Download the installer: <https://github.com/synaptrixai/SpiLLI/releases/download/v0.3.3/SpiLLIHost-0.3.3-win64.exe>  
+  1. Download the installer: <https://github.com/synaptrixai/SpiLLI/releases/download/v0.3.4/SpiLLIHost-0.3.4-win64.exe>  
   2. Run the setup. Ignore the unsigned‑signature warning.  
   3. Select your `SpiLLIHost_Community.pem` during the installation process and follow prompts to complete the installation.
 
