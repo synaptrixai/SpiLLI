@@ -11,8 +11,7 @@ SpiLLI consists of two main components:
 | **SpiLLI SDK** | Python library/framework for building decentralized AI applications |
 | **SpiLLIHost** | Sandboxed AI Runner that turns a machine into a host node, serving AI models to the network |
 
-> **⚠️ Notice** – SpiLLI is in **beta**. It may contain bugs and features under development.  
-> Kindly open issues, give feedback, or contribute on GitHub.
+Computers running SpiLLIHost provide a collection of decentralized host nodes across the internet hosting AI models. Users and developers connect to the best available host at runtime using applications built with SpiLLI SDK for their requested AI resources.
 
 ---
 
@@ -166,6 +165,9 @@ pip install --index-url https://well.synaptrix.org --upgrade SpiLLI
 | *Can I host models on a phone?* | The SDK runs on any machine with Python 3.8–3.12, but SpiLLIHost currently targets desktop OSes. In principle, yes, but we will postpone our phone hosting efforts unless you have a specific use case you'd like us to support |
 
 ---
+
+> **⚠️ Notice** – SpiLLI is in **beta**. It may contain bugs and features under development.  
+> Kindly open issues, give feedback, or contribute on GitHub.
 
 **Thank you for using SpiLLI!**  
 For questions or help, reach out via the GitHub issues or Discussions tab (on the GitHub repo page).
