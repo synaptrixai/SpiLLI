@@ -34,6 +34,12 @@ This reduces costs and increases accessibility for developers, users and AI rese
 
 ## Getting Started
 
+There are two ways to getting started with SpiLLI.
+
+1. If you a first time user just looking to try out building some AI agents with the SDK, or follow the tutorials in this repository, follow instructions in the first "Running Applications and Tutorials in a pre-configured, sandboxed environment" section
+
+2. If you are looking to host AI models for yourself, or are a developer looking to install SpiLLI SDK directly (without all the heavy dependencies installed in the preshipped docker image for the tutorials), follow the second set of instructions: "Installation Without Docker" for a light weight install.
+
 ### 1️⃣ Running Applications and Tutorials in a pre-configured, sandboxed environment
 
 The repository ships a [Docker image](https://hub.docker.com/r/synaptrixai/spilli-rag-tutorials) with all required dependencies installed for easy startup. If you have [Docker](https://docs.docker.com/get-started/introduction/get-docker-desktop/) installed, you can run the tutorials using the following steps:
