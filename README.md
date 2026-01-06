@@ -66,19 +66,6 @@ The repository ships a [Docker image](https://hub.docker.com/r/synaptrixai/spill
 
 ---
 
-### 2️⃣ System Requirements
-
-| OS | Host | SDK |
-|----|------|-----|
-| Ubuntu 24.04 | ✅ | Python 3.8–3.12 |
-| Windows 10/11 | ✅ | Python 3.8–3.12 |
-| Others | 🚧 (future) | 🚧 |
-
-> **Host**: Supports NVIDIA, AMD GPUs and CPUs.  
-> **SDK**: Use the Python package manager to install the SDK.
-
----
-
 ### 3️⃣ Installation Without Docker
 
 #### Installing SpiLLIHost
@@ -118,6 +105,19 @@ pip install --index-url https://well.synaptrix.org --upgrade SpiLLI
 ```
 
 > Get the `SpiLLIHost_Community.pem` and `SpiLLI_Community.pem` encryption files from <https://agents.synaptrix.org/dechat>.
+
+---
+
+### 2️⃣ System Requirements
+
+| OS | Host | SDK |
+|----|------|-----|
+| Ubuntu 24.04 | ✅ | Python 3.8–3.12 |
+| Windows 10/11 | ✅ | Python 3.8–3.12 |
+| Others | 🚧 (future) | 🚧 |
+
+> **Host**: Supports NVIDIA, AMD GPUs and CPUs.  
+> **SDK**: Use the Python package manager to install the SDK.
 
 ---
 
