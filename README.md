@@ -66,7 +66,7 @@ The repository ships a [Docker image](https://hub.docker.com/r/synaptrixai/spill
 
 ---
 
-### 3️⃣ Installation Without Docker
+### 2️⃣ Installation Without Docker
 
 #### Installing SpiLLIHost
 
@@ -108,7 +108,7 @@ pip install --index-url https://well.synaptrix.org --upgrade SpiLLI
 
 ---
 
-### 2️⃣ System Requirements
+### 3️⃣ System Requirements
 
 | OS | Host | SDK |
 |----|------|-----|
