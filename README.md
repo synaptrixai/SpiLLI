@@ -11,7 +11,7 @@ SpiLLI consists of two main components:
 | **SpiLLI SDK** | Python library/framework for building decentralized AI applications |
 | **SpiLLIHost** | Sandboxed AI Runner that turns a machine into a host node, serving AI models to the network |
 
-Computers running SpiLLIHost provide a collection of decentralized host nodes across the internet hosting AI models. Users and developers connect to the best available host at runtime using applications built with SpiLLI SDK for their requested AI resources.
+Computers running SpiLLIHost provide a collection of decentralized host nodes across the internet hosting AI models. Users and developers are automatically connected to the best available host at runtime for applications built with SpiLLI SDK for their requested AI resources.
 
 ---
 
