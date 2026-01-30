@@ -1,0 +1,10 @@
+services:
+  chatbot:
+    build: .
+    container_name: python_chatbot
+    ports:
+      - "8501:8501"
+    volumes:
+      - .:/app
+    environment:
+      - STREAMLIT_SERVER_PORT=8501
