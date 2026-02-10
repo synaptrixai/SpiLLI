@@ -41,26 +41,68 @@ class SpinChatModel(BaseChatModel):
         """
         prompt = self._convert_messages_to_prompt(messages)
         response_text = await self._call_spin(prompt)
+        msg= self.parse_tool_call (response_text)
         # Detect LangChain-style tool call
-        action_match = re.search(r"Action:\s*(\w+)", response_text)
-        input_match = re.search(r"Action Input:\s*(\{.*\})", response_text, re.DOTALL)
+        # action_match = re.search(r"Action:\s*(\w+)", response_text)
+        # input_match = re.search(r"Action Input:\s*(\{.*\})", response_text, re.DOTALL)
     
-        if action_match and input_match:
-            tool_name = action_match.group(1)
-            try:
-                tool_args = json.loads(input_match.group(1))
-            except json.JSONDecodeError:
-                tool_args = {"input": input_match.group(1)}
+        # if action_match and input_match:
+        #     tool_name = action_match.group(1)
+        #     try:
+        #         tool_args = json.loads(input_match.group(1))
+        #     except json.JSONDecodeError:
+        #         tool_args = {"input": input_match.group(1)}
     
-            tool_call = ToolCall(
-                id=f"call_{tool_name}_{hash(response_text) % 10000}",
-                name=tool_name,
-                args=tool_args,
-            )
-            msg = AIMessage(content="", tool_calls=[tool_call])
-        else:
-            msg = AIMessage(content=response_text)
+        #     tool_call = ToolCall(
+        #         id=f"call_{tool_name}_{hash(response_text) % 10000}",
+        #         name=tool_name,
+        #         args=tool_args,
+        #     )
+        #     msg = AIMessage(content="", tool_calls=[tool_call])
+        # else:
+        #     msg = AIMessage(content=response_text)
         return ChatResult(generations=[ChatGeneration(message=msg)])
+
+
+    def parse_tool_call(self, response_text):
+
+        # NEW FORMAT
+        new_pattern = re.search(
+            r"<\|channel\|>commentary\s+to=(\w+).*?<\|message\|>(\{.*?\})",
+            response_text,
+            re.DOTALL
+        )
+
+        if new_pattern:
+            tool_name = new_pattern.group(1)
+            tool_args_str = new_pattern.group(2)
+
+        else:
+            # OLD FORMAT
+            action_match = re.search(r"Action:\s*(\w+)", response_text)
+            input_match = re.search(r"Action Input:\s*(\{.*\})", response_text, re.DOTALL)
+
+            if not action_match or not input_match:
+                return AIMessage(content=response_text)
+
+            tool_name = action_match.group(1)
+            tool_args_str = input_match.group(1)
+
+        try:
+            tool_args = json.loads(tool_args_str)
+            print("Tool args:", tool_args)
+        except json.JSONDecodeError:
+            tool_args = {"input": tool_args_str}
+
+        tool_call = ToolCall(
+            id=f"call_{tool_name}_{hash(response_text) % 10000}",
+            name=tool_name,
+            args=tool_args,
+        )
+
+        return AIMessage(content="", tool_calls=[tool_call])
+
+
     def _generate(
         self, messages: List[BaseMessage], stop: Optional[List[str]] = None, **kwargs
     ) -> ChatResult:
@@ -69,25 +111,26 @@ class SpinChatModel(BaseChatModel):
         """
         prompt = self._convert_messages_to_prompt(messages)
         response_text = asyncio.run(self._call_spin(prompt))
+        msg= self.parse_tool_call (response_text)
         # Detect LangChain-style tool call
-        action_match = re.search(r"Action:\s*(\w+)", response_text)
-        input_match = re.search(r"Action Input:\s*(\{.*\})", response_text, re.DOTALL)
+        # action_match = re.search(r"Action:\s*(\w+)", response_text)
+        # input_match = re.search(r"Action Input:\s*(\{.*\})", response_text, re.DOTALL)
     
-        if action_match and input_match:
-            tool_name = action_match.group(1)
-            try:
-                tool_args = json.loads(input_match.group(1))
-            except json.JSONDecodeError:
-                tool_args = {"input": input_match.group(1)}
+        # if action_match and input_match:
+        #     tool_name = action_match.group(1)
+        #     try:
+        #         tool_args = json.loads(input_match.group(1))
+        #     except json.JSONDecodeError:
+        #         tool_args = {"input": input_match.group(1)}
     
-            tool_call = ToolCall(
-                id=f"call_{tool_name}_{hash(response_text) % 10000}",
-                name=tool_name,
-                args=tool_args,
-            )
-            msg = AIMessage(content="", tool_calls=[tool_call])
-        else:
-            msg = AIMessage(content=response_text)
+        #     tool_call = ToolCall(
+        #         id=f"call_{tool_name}_{hash(response_text) % 10000}",
+        #         name=tool_name,
+        #         args=tool_args,
+        #     )
+        #     msg = AIMessage(content="", tool_calls=[tool_call])
+        # else:
+        #     msg = AIMessage(content=response_text)
         return ChatResult(generations=[ChatGeneration(message=msg)])
     async def _call_spin(self, prompt: str) -> str:
         """
