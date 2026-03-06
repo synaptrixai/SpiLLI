@@ -156,9 +156,8 @@ pip install --index-url https://well.synaptrix.org --upgrade SpiLLI
 
 ## Running as an AI User
 
-* Use the **Agents Portal**: <https://agents.synaptrix.org/dechat>.  
-* Import your `.p12` encryption file to interact securely ("Getting Started" instructions on the portal).  
-* The portal prompts you to select the encryption file once you start interacting to secure your AI pipeline.
+* Use the **VS Code Extension**: <[SpiLLI VS Code Extension](https://marketplace.visualstudio.com/items?itemName=Synaptrix.spilli)>.  
+* The extension will install the Spilli Agents interface in VS Code that will automatically guide you through the encryption setup and allow you to connect and configure your SpiLLI AI network.  
 
 ---
 
