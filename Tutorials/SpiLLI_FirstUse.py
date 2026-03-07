@@ -4,7 +4,9 @@ import asyncio
 # %% Initialize the network module
 spin = Spin("SpiLLI_Community.pem")
 # %% Request a AI model
-llm = spin.request({"model":"Gpt-Oss-20B"})
+llm = spin.request({"model":"Openai_Gpt Oss 20b"})
+if llm is None:
+    print('Failed to connect to model')
 # %% Write a callback to execute on response
 def on_done(task: asyncio.Task):
     try:
@@ -16,6 +18,8 @@ def on_done(task: asyncio.Task):
 run1 = llm.run({"prompt":"You are a helpful AI programmer","query":"Can you show me how to multiply two matrices using numpy"})
 task = asyncio.create_task(run1)
 task.add_done_callback(on_done)
+#%%
+del llm # free up the resources
 #%%
 # %% You can request another model in parallel
 # llm1 = spin.request({"model":"deepseek-r1:32b"})
