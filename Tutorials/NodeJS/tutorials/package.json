@@ -1,0 +1,21 @@
+{
+  "name": "spilli-langchain-starter-tutorials",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Getting-started tutorials for @synaptrix/spilli + LangChain",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "tut:01": "node --env-file=.env 01-basic-spilli-call.mjs",
+    "tut:02": "node --env-file=.env 02-streaming-response.mjs",
+    "tut:03": "node --env-file=.env 03-langchain-lightweight.mjs",
+    "tut:04": "node --env-file=.env 04-langchain-custom-agent-loop.mjs"
+  },
+  "dependencies": {
+    "@langchain/core": "^0.3.79",
+    "@synaptrix/spilli": "^0.3.6",
+    "zod": "^3.25.76"
+  }
+}
