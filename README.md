@@ -33,6 +33,7 @@ Use the path that best matches what you want to do first:
 
 | Goal | Recommended Path | Key Artifacts | Detailed Guide |
 |------|------------------|---------------|----------------|
+| Manage SpiLLI in one place | VS Code extension | Host setup, PEM download, subscriptions, agents, benchmarks | [SpiLLI VS Code Extension](https://marketplace.visualstudio.com/items?itemName=Synaptrix.spilli) |
 | Run a AI host | Native `SpiLLIHost` install | Ubuntu `.deb`, Windows installer | [SpiLLI Host Installation Guide](https://github.com/synaptrixai/SpiLLI/wiki/SpiLLI-Host-Installation-Guide) |
 | Run a containerized host | Docker `SpiLLIHost` runtime | `ghcr.io/synaptrixai/spillihost:v0.3.6` | [SpiLLI Host Docker Deployment](https://github.com/synaptrixai/SpiLLI/wiki/SpiLLI-Host-Docker-Deployment) |
 | Deploy to Kubernetes | Helm chart + GHCR image | `oci://ghcr.io/synaptrixai/charts/spillihost --version 0.3.6` | [SpiLLI Host Helm and Kubernetes Deployment](https://github.com/synaptrixai/SpiLLI/wiki/SpiLLI-Host-Helm-and-Kubernetes-Deployment) |
