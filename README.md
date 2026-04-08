@@ -12,21 +12,18 @@ SpiLLI consists of two main components:
 
 Machines running `SpiLLIHost` form a distributed network of AI resources. Applications built with the `SpiLLI SDK` are automatically routed to the best available host for their requested AI resources at runtime.
 
-Whether you want to build AI applications with the SDK, run your own host nodes for AI models in local, cloud or hybrid setups, or deploy into containers and Kubernetes clusters, SpiLLI is designed to give you a straightforward path to get started.
+SpiLLI is designed around a few key ideas:
 
----
+1. **Enhanced privacy and security**: data stays protected through personalized credentials, encryption-locked communication, and identity-aware access across the network.
+2. **Flexible AI infrastructure**: peer-to-peer, cloud, and hybrid deployment paths make it easier to tailor infrastructure to your needs, environment, and budget.
+3. **Democratized AI participation**: the network is built so people can participate both as infrastructure suppliers and as users of AI resources.
+4. **Global collaboration**: models, tools, and AI capabilities can be shared and accessed across the internet.
+5. **Decentralized multi-agent systems**: developers can build applications that operate across a cooperative, large-scale network of AI resources.
+6. **Real-time networking**: AI inference, monitoring, and future training-oriented workflows can benefit from low-latency, real-time coordination between clients and hosts.
 
-## Why SpiLLI
+This makes SpiLLI a flexible foundation for building decentralized local, cloud and hybrid AI infrastructure, serving multiple users, AI agents and applications with resources that can evolve as the network evolves around them.
 
-SpiLLI is built around a simple idea: developers should be able to build AI applications and operators should be able to contribute AI infrastructure without being locked into a single centralized runtime.
-
-With SpiLLI:
-
-1. `SpiLLIHost` turns a machine into a host node that can serve AI models to the network.
-2. The `SpiLLI SDK` lets applications discover and use available hosts for the resources they need.
-3. Identity and encryption are handled through personalized credentials so traffic remains protected across the network.
-
-This makes it easier to experiment, host, and scale AI workloads across local machines, containers, and hybrid cloud environments.
+Whether you want to build AI applications with the SDK, run your own host nodes and network for AI models, or deploy into containers and Kubernetes clusters, SpiLLI is designed to give you a straightforward path to get started.
 
 ---
 
@@ -36,7 +33,7 @@ Use the path that best matches what you want to do first:
 
 | Goal | Recommended Path | Key Artifacts | Detailed Guide |
 |------|------------------|---------------|----------------|
-| Run a local host | Native `SpiLLIHost` install | Ubuntu `.deb`, Windows installer | [SpiLLI Host Installation Guide](https://github.com/synaptrixai/SpiLLI/wiki/SpiLLI-Host-Installation-Guide) |
+| Run a AI host | Native `SpiLLIHost` install | Ubuntu `.deb`, Windows installer | [SpiLLI Host Installation Guide](https://github.com/synaptrixai/SpiLLI/wiki/SpiLLI-Host-Installation-Guide) |
 | Run a containerized host | Docker `SpiLLIHost` runtime | `ghcr.io/synaptrixai/spillihost:v0.3.6` | [SpiLLI Host Docker Deployment](https://github.com/synaptrixai/SpiLLI/wiki/SpiLLI-Host-Docker-Deployment) |
 | Deploy to Kubernetes | Helm chart + GHCR image | `oci://ghcr.io/synaptrixai/charts/spillihost --version 0.3.6` | [SpiLLI Host Helm and Kubernetes Deployment](https://github.com/synaptrixai/SpiLLI/wiki/SpiLLI-Host-Helm-and-Kubernetes-Deployment) |
 | Build with the SDK | Python or Node.js SDK | `pip install SpiLLI`, `npm install @synaptrix/spilli` | [SpiLLI SDK Installation Guide](https://github.com/synaptrixai/SpiLLI/wiki/SpiLLI-SDK-Installation-Guide) |
