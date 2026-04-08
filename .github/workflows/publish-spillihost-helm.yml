@@ -1,0 +1,101 @@
+name: Publish SpiLLIHost Helm Chart
+
+on:
+  release:
+    types: [published]
+  workflow_dispatch:
+    inputs:
+      release_tag:
+        description: "Release tag to publish (for example: v0.3.5)"
+        required: true
+        type: string
+
+permissions:
+  contents: read
+  packages: write
+
+jobs:
+  publish-helm-chart:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Helm
+        uses: azure/setup-helm@v4
+
+      - name: Resolve chart version from release tag
+        id: meta
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          if [[ "${GITHUB_EVENT_NAME}" == "release" ]]; then
+            release_tag="${{ github.event.release.tag_name }}"
+          else
+            release_tag="${{ inputs.release_tag }}"
+          fi
+
+          if [[ -z "$release_tag" ]]; then
+            echo "Release tag is required." >&2
+            exit 1
+          fi
+
+          chart_version="${release_tag#v}"
+          if [[ -z "$chart_version" || "$chart_version" == "$release_tag" && "$release_tag" == v* ]]; then
+            echo "Invalid release tag: ${release_tag}" >&2
+            exit 1
+          fi
+
+          {
+            echo "release_tag=${release_tag}"
+            echo "chart_version=${chart_version}"
+            echo "image_repo=ghcr.io/${GITHUB_REPOSITORY_OWNER}/spillihost"
+          } >> "$GITHUB_OUTPUT"
+
+      - name: Verify matching runtime image tag exists in GHCR
+        env:
+          RELEASE_TAG: ${{ steps.meta.outputs.release_tag }}
+          IMAGE_REPO: ${{ steps.meta.outputs.image_repo }}
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          image_ref="${IMAGE_REPO}:${RELEASE_TAG}"
+          if ! docker manifest inspect "$image_ref" >/dev/null 2>&1; then
+            echo "Expected runtime image tag not found in GHCR: $image_ref" >&2
+            echo "Publish image workflow for this release tag first." >&2
+            exit 1
+          fi
+
+      - name: Stamp chart metadata
+        shell: bash
+        env:
+          RELEASE_TAG: ${{ steps.meta.outputs.release_tag }}
+          CHART_VERSION: ${{ steps.meta.outputs.chart_version }}
+        run: |
+          set -euo pipefail
+          sed -i -E "s/^version: .*/version: ${CHART_VERSION}/" charts/spillihost/Chart.yaml
+          sed -i -E "s/^appVersion: .*/appVersion: \"${RELEASE_TAG}\"/" charts/spillihost/Chart.yaml
+
+      - name: Lint and package chart
+        shell: bash
+        run: |
+          set -euo pipefail
+          helm lint charts/spillihost
+          mkdir -p dist
+          helm package charts/spillihost --destination dist
+
+      - name: Login to GHCR Helm OCI registry
+        shell: bash
+        run: |
+          set -euo pipefail
+          echo "${{ secrets.GITHUB_TOKEN }}" | helm registry login ghcr.io -u "${{ github.actor }}" --password-stdin
+
+      - name: Push Helm chart to GHCR
+        shell: bash
+        env:
+          CHART_VERSION: ${{ steps.meta.outputs.chart_version }}
+        run: |
+          set -euo pipefail
+          helm push "dist/spillihost-${CHART_VERSION}.tgz" oci://ghcr.io/${{ github.repository_owner }}/charts

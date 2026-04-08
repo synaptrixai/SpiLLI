@@ -263,6 +263,32 @@ helm upgrade --install "$RELEASE_NAME" \
   --version "$HELM_CHART_VERSION" \
   --namespace "$NAMESPACE" \
   -f /tmp/spillihost-values.yaml
+
+kubectl -n "$NAMESPACE" get all
+kubectl -n "$NAMESPACE" get secret "$SPILLI_PEM_SECRET_REF"
+kubectl -n "$NAMESPACE" describe deployment "$RELEASE_NAME"
+kubectl -n "$NAMESPACE" logs deploy/"$RELEASE_NAME" --tail=100
+```
+
+### Verify image origin
+
+Consumers can verify that an image was produced by the `synaptrixai/SpiLLI` GitHub Actions workflow before using it.
+
+Verify the Sigstore keyless signature:
+
+```bash
+cosign verify \
+  --certificate-oidc-issuer https://token.actions.githubusercontent.com \
+  --certificate-identity-regexp 'https://github.com/synaptrixai/SpiLLI/.github/workflows/publish-spillihost-image.yml@.*' \
+  ghcr.io/synaptrixai/spillihost:v0.3.5
+```
+
+Verify the GitHub build provenance attestation:
+
+```bash
+gh attestation verify \
+  oci://ghcr.io/synaptrixai/spillihost:v0.3.5 \
+  --repo synaptrixai/SpiLLI
 ```
 
 ### Kubernetes secret/reference model
@@ -272,3 +298,7 @@ For Kubernetes/DOKS deployment flows, `Secret Reference` maps to a Kubernetes se
 - Secret must exist in target namespace.
 - Secret must include key `pem` containing PEM contents.
 - Helm values field is `spilliHost.pemSecretRef.name` and key field is `spilliHost.pemSecretRef.key`.
+
+Notes:
+- Helm chart publication checks that `ghcr.io/synaptrixai/spillihost:<release-tag>` exists before pushing chart artifacts.
+- `.deb` install auto-enables/starts `SpiLLIHost` service on VM installs; container runtime does not use systemd and starts the binary directly as PID 1.

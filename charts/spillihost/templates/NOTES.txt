@@ -1,0 +1,7 @@
+SpiLLIHost deployment created.
+
+Release: {{ .Release.Name }}
+Namespace: {{ .Release.Namespace }}
+Image: {{ .Values.image.repository }}:{{ default .Chart.AppVersion .Values.image.tag }}
+Node ID: {{ .Values.spilliHost.nodeId }}
+PEM secret ref: {{ .Values.spilliHost.pemSecretRef.name }} (key={{ default "pem" .Values.spilliHost.pemSecretRef.key }})

@@ -1,0 +1,76 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "spillihost.fullname" . }}
+  labels:
+    app.kubernetes.io/name: {{ include "spillihost.name" . }}
+    app.kubernetes.io/instance: {{ .Release.Name }}
+    helm.sh/chart: {{ include "spillihost.chart" . }}
+    app.kubernetes.io/managed-by: {{ .Release.Service }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: {{ include "spillihost.name" . }}
+      app.kubernetes.io/instance: {{ .Release.Name }}
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: {{ include "spillihost.name" . }}
+        app.kubernetes.io/instance: {{ .Release.Name }}
+      {{- with .Values.podAnnotations }}
+      annotations:
+{{ toYaml . | indent 8 }}
+      {{- end }}
+    spec:
+      {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+{{ toYaml . | indent 8 }}
+      {{- end }}
+      {{- with .Values.podSecurityContext }}
+      securityContext:
+{{ toYaml . | indent 8 }}
+      {{- end }}
+      containers:
+        - name: spillihost
+          image: "{{ .Values.image.repository }}:{{ default .Chart.AppVersion .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          {{- with .Values.securityContext }}
+          securityContext:
+{{ toYaml . | indent 12 }}
+          {{- end }}
+          env:
+            - name: SPILLI_NODE_ID
+              value: {{ required "spilliHost.nodeId is required" .Values.spilliHost.nodeId | quote }}
+            - name: SPILLI_SUBSCRIPTION_TIER
+              value: {{ .Values.spilliHost.subscriptionTier | quote }}
+            - name: SPILLI_PEM_SECRET_REF
+              value: {{ required "spilliHost.pemSecretRef.name is required" .Values.spilliHost.pemSecretRef.name | quote }}
+            {{- with .Values.extraEnv }}
+{{ toYaml . | indent 12 }}
+            {{- end }}
+          volumeMounts:
+            - name: spilli-pem
+              mountPath: /usr/bin/SpiLLIHost/SpiLLIHost_{{ .Values.spilliHost.subscriptionTier | title }}.pem
+              subPath: {{ default "pem" .Values.spilliHost.pemSecretRef.key }}
+              readOnly: true
+          {{- with .Values.resources }}
+          resources:
+{{ toYaml . | indent 12 }}
+          {{- end }}
+      volumes:
+        - name: spilli-pem
+          secret:
+            secretName: {{ required "spilliHost.pemSecretRef.name is required" .Values.spilliHost.pemSecretRef.name }}
+      {{- with .Values.nodeSelector }}
+      nodeSelector:
+{{ toYaml . | indent 8 }}
+      {{- end }}
+      {{- with .Values.affinity }}
+      affinity:
+{{ toYaml . | indent 8 }}
+      {{- end }}
+      {{- with .Values.tolerations }}
+      tolerations:
+{{ toYaml . | indent 8 }}
+      {{- end }}
