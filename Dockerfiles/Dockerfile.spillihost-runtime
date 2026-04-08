@@ -1,0 +1,25 @@
+FROM ubuntu:24.04
+
+ENV DEBIAN_FRONTEND=noninteractive
+
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends \
+      ca-certificates \
+      bash \
+      libvulkan1 \
+      libcurl4 && \
+    rm -rf /var/lib/apt/lists/*
+
+COPY dist/SpiLLIHost.deb /tmp/SpiLLIHost.deb
+
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends /tmp/SpiLLIHost.deb && \
+    rm -f /tmp/SpiLLIHost.deb && \
+    rm -rf /var/lib/apt/lists/*
+
+WORKDIR /usr/bin/SpiLLIHost
+
+COPY Dockerfiles/spillihost-entrypoint.sh /usr/local/bin/spillihost-entrypoint.sh
+RUN chmod +x /usr/local/bin/spillihost-entrypoint.sh
+
+ENTRYPOINT ["/usr/local/bin/spillihost-entrypoint.sh"]

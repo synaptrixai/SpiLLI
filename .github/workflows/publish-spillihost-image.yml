@@ -1,0 +1,125 @@
+name: Publish SpiLLIHost Image
+
+on:
+  release:
+    types: [published]
+  workflow_dispatch:
+    inputs:
+      release_tag:
+        description: Release tag to publish (for example: v0.3.5)
+        required: true
+        type: string
+      prerelease:
+        description: Mark this publication as prerelease channel
+        required: false
+        default: false
+        type: boolean
+
+permissions:
+  contents: read
+  packages: write
+  id-token: write
+  attestations: write
+
+jobs:
+  publish-image:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Resolve release metadata
+        id: meta
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          if [[ "${GITHUB_EVENT_NAME}" == "release" ]]; then
+            release_tag="${{ github.event.release.tag_name }}"
+            prerelease="${{ github.event.release.prerelease }}"
+          else
+            release_tag="${{ inputs.release_tag }}"
+            prerelease="${{ inputs.prerelease }}"
+          fi
+
+          if [[ -z "$release_tag" ]]; then
+            echo "Release tag is required." >&2
+            exit 1
+          fi
+
+          version_no_v="${release_tag#v}"
+          image_repo="ghcr.io/${GITHUB_REPOSITORY_OWNER}/spillihost"
+
+          tags="${image_repo}:${release_tag}\n${image_repo}:${version_no_v}"
+          if [[ "$prerelease" == "true" ]]; then
+            channel="rc"
+            if [[ "$release_tag" == *"beta"* || "$release_tag" == *"beta."* || "$release_tag" == *"-beta"* ]]; then
+              channel="beta"
+            fi
+            tags="${tags}\n${image_repo}:${channel}"
+          fi
+
+          {
+            echo "release_tag=${release_tag}"
+            echo "version_no_v=${version_no_v}"
+            echo "image_repo=${image_repo}"
+            echo "tags<<EOF"
+            printf "%b\n" "$tags"
+            echo "EOF"
+          } >> "$GITHUB_OUTPUT"
+
+      - name: Setup Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Install Cosign
+        uses: sigstore/cosign-installer@v4.0.0
+
+      - name: Login to GHCR
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Download SpiLLIHost Linux .deb for release
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          RELEASE_TAG: ${{ steps.meta.outputs.release_tag }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p dist
+
+          asset_url="$(gh api "repos/${GITHUB_REPOSITORY}/releases/tags/${RELEASE_TAG}" --jq '.assets[] | select(.name | test("SpiLLIHost-.*-Linux-SpiLLIHost\\.deb$")) | .browser_download_url' | head -n 1)"
+
+          if [[ -z "$asset_url" ]]; then
+            echo "Could not locate SpiLLIHost Linux .deb asset for tag ${RELEASE_TAG}." >&2
+            exit 1
+          fi
+
+          curl -fL "$asset_url" -o dist/SpiLLIHost.deb
+
+      - name: Build and push image
+        id: build
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          file: Dockerfiles/Dockerfile.spillihost-runtime
+          push: true
+          tags: ${{ steps.meta.outputs.tags }}
+
+      - name: Sign image with GitHub OIDC identity
+        env:
+          IMAGE_REPO: ${{ steps.meta.outputs.image_repo }}
+          DIGEST: ${{ steps.build.outputs.digest }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          cosign sign --yes "${IMAGE_REPO}@${DIGEST}"
+
+      - name: Generate build provenance attestation
+        uses: actions/attest-build-provenance@v3
+        with:
+          subject-name: ${{ steps.meta.outputs.image_repo }}
+          subject-digest: ${{ steps.build.outputs.digest }}
+          push-to-registry: true
