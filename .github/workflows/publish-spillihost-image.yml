@@ -6,11 +6,11 @@ on:
   workflow_dispatch:
     inputs:
       release_tag:
-        description: Release tag to publish (for example: v0.3.5)
+        description: "Release tag to publish (for example: v0.3.5)"
         required: true
         type: string
       prerelease:
-        description: Mark this publication as prerelease channel
+        description: "Mark this publication as prerelease channel"
         required: false
         default: false
         type: boolean
