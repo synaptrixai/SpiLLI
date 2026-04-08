@@ -219,3 +219,56 @@ For full Node.js setup, streaming, and agent-loop tutorials:
 
 **Thank you for using SpiLLI!**  
 For questions or help, reach out via the GitHub issues or Discussions tab (on the GitHub repo page).
+
+---
+
+## Kubernetes & Helm Release Artifacts
+
+SpiLLIHost Kubernetes deployment artifacts are published from GitHub Releases.
+
+- Runtime image: `ghcr.io/synaptrixai/spillihost:<release-tag>`
+- Helm chart (OCI): `oci://ghcr.io/synaptrixai/charts/spillihost --version <release-version-without-v>`
+
+Example install/upgrade:
+
+```bash
+RELEASE_TAG=v0.3.5
+HELM_CHART_VERSION="${RELEASE_TAG#v}"
+NAMESPACE=spillihost
+RELEASE_NAME=spillihost
+SPILLI_NODE_ID=prod-node-1
+SPILLI_SUBSCRIPTION_TIER=Community
+SPILLI_PEM_SECRET_REF=spillihost-pem
+
+kubectl create namespace "$NAMESPACE" --dry-run=client -o yaml | kubectl apply -f -
+
+# Optional helper: create/update PEM secret from local file.
+kubectl -n "$NAMESPACE" create secret generic "$SPILLI_PEM_SECRET_REF" \
+  --from-file=pem=./SpiLLIHost_Community.pem --dry-run=client -o yaml | kubectl apply -f -
+
+cat > /tmp/spillihost-values.yaml <<EOF
+image:
+  repository: "ghcr.io/synaptrixai/spillihost"
+  tag: "${RELEASE_TAG}"
+spilliHost:
+  nodeId: "${SPILLI_NODE_ID}"
+  subscriptionTier: "${SPILLI_SUBSCRIPTION_TIER}"
+  pemSecretRef:
+    name: "${SPILLI_PEM_SECRET_REF}"
+    key: "pem"
+EOF
+
+helm upgrade --install "$RELEASE_NAME" \
+  oci://ghcr.io/synaptrixai/charts/spillihost \
+  --version "$HELM_CHART_VERSION" \
+  --namespace "$NAMESPACE" \
+  -f /tmp/spillihost-values.yaml
+```
+
+### Kubernetes secret/reference model
+
+For Kubernetes/DOKS deployment flows, `Secret Reference` maps to a Kubernetes secret name.
+
+- Secret must exist in target namespace.
+- Secret must include key `pem` containing PEM contents.
+- Helm values field is `spilliHost.pemSecretRef.name` and key field is `spilliHost.pemSecretRef.key`.
