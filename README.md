@@ -34,9 +34,9 @@ Use the path that best matches what you want to do first:
 | Goal | Recommended Path | Key Artifacts | Detailed Guide |
 |------|------------------|---------------|----------------|
 | Manage SpiLLI in one place | VS Code extension | Host setup, PEM download, subscriptions, agents, benchmarks | [SpiLLI VS Code Extension](https://marketplace.visualstudio.com/items?itemName=Synaptrix.spilli) |
-| Run a AI host | Native `SpiLLIHost` install | Ubuntu `.deb`, Windows installer | [SpiLLI Host Installation Guide](https://github.com/synaptrixai/SpiLLI/wiki/SpiLLI-Host-Installation-Guide) |
-| Run a containerized host | Docker `SpiLLIHost` runtime | `ghcr.io/synaptrixai/spillihost:v0.3.6` | [SpiLLI Host Docker Deployment](https://github.com/synaptrixai/SpiLLI/wiki/SpiLLI-Host-Docker-Deployment) |
-| Deploy to Kubernetes | Helm chart + GHCR image | `oci://ghcr.io/synaptrixai/charts/spillihost --version 0.3.6` | [SpiLLI Host Helm and Kubernetes Deployment](https://github.com/synaptrixai/SpiLLI/wiki/SpiLLI-Host-Helm-and-Kubernetes-Deployment) |
+| Run an AI host | Native `SpiLLIHost` install | Ubuntu `.deb`, Windows installer, macOS 12+ `.pkg` for Intel and Apple Silicon | [SpiLLI Host Installation Guide](https://github.com/synaptrixai/SpiLLI/wiki/SpiLLI-Host-Installation-Guide) |
+| Run a containerized host | Docker `SpiLLIHost` runtime | `ghcr.io/synaptrixai/spillihost:v0.4.1` | [SpiLLI Host Docker Deployment](https://github.com/synaptrixai/SpiLLI/wiki/SpiLLI-Host-Docker-Deployment) |
+| Deploy to Kubernetes | Helm chart + GHCR image | `oci://ghcr.io/synaptrixai/charts/spillihost --version 0.4.1` | [SpiLLI Host Helm and Kubernetes Deployment](https://github.com/synaptrixai/SpiLLI/wiki/SpiLLI-Host-Helm-and-Kubernetes-Deployment) |
 | Build with the SDK | Python or Node.js SDK | `pip install SpiLLI`, `npm install @synaptrix/spilli` | [SpiLLI SDK Installation Guide](https://github.com/synaptrixai/SpiLLI/wiki/SpiLLI-SDK-Installation-Guide) |
 | Explore SDK tutorials | Docker tutorials environment | `docker compose up` in this repo | [SpiLLI SDK Docker Tutorials](https://github.com/synaptrixai/SpiLLI/wiki/SpiLLI-SDK-Docker-Tutorials) |
 
@@ -88,7 +88,7 @@ If you’re experimenting with decentralized AI apps, hosting models, or buildin
 | Question | Answer |
 |----------|--------|
 | Is my data safe? | SpiLLI uses personalized credentials and end-to-end encryption to help protect traffic and user identity across the network. |
-| Do I need Docker to use SpiLLI? | No. You can install `SpiLLIHost` natively and use the SDK directly. Docker and Helm are optional deployment paths. |
+| Do I need Docker to use SpiLLI? | No. You can install `SpiLLIHost` natively on Ubuntu, Windows, or macOS 12+ and use the SDK directly. Docker and Helm are optional deployment paths. |
 | Can I deploy SpiLLIHost to Kubernetes? | Yes. The published Helm chart and GHCR runtime image are designed for that workflow. |
 | Can I just try the SDK first? | Yes. The SDK installation guide and Docker tutorials path are both good starting points for developers. |
 
