@@ -35,8 +35,8 @@ Use the path that best matches what you want to do first:
 |------|------------------|---------------|----------------|
 | Manage SpiLLI in one place | VS Code extension | Host setup, PEM download, subscriptions, agents, benchmarks | [SpiLLI VS Code Extension](https://marketplace.visualstudio.com/items?itemName=Synaptrix.spilli) |
 | Run an AI host | Native `SpiLLIHost` install | Ubuntu `.deb`, Windows installer, macOS 12+ `.pkg` for Intel and Apple Silicon | [SpiLLI Host Installation Guide](https://github.com/synaptrixai/SpiLLI/wiki/SpiLLI-Host-Installation-Guide) |
-| Run a containerized host | Docker `SpiLLIHost` runtime | `ghcr.io/synaptrixai/spillihost:v0.4.1` | [SpiLLI Host Docker Deployment](https://github.com/synaptrixai/SpiLLI/wiki/SpiLLI-Host-Docker-Deployment) |
-| Deploy to Kubernetes | Helm chart + GHCR image | `oci://ghcr.io/synaptrixai/charts/spillihost --version 0.4.1` | [SpiLLI Host Helm and Kubernetes Deployment](https://github.com/synaptrixai/SpiLLI/wiki/SpiLLI-Host-Helm-and-Kubernetes-Deployment) |
+| Run a containerized host | Docker `SpiLLIHost` runtime | `ghcr.io/synaptrixai/spillihost:v0.4.4` | [SpiLLI Host Docker Deployment](https://github.com/synaptrixai/SpiLLI/wiki/SpiLLI-Host-Docker-Deployment) |
+| Deploy to Kubernetes | Helm chart + GHCR image | `oci://ghcr.io/synaptrixai/charts/spillihost --version 0.4.4` | [SpiLLI Host Helm and Kubernetes Deployment](https://github.com/synaptrixai/SpiLLI/wiki/SpiLLI-Host-Helm-and-Kubernetes-Deployment) |
 | Build with the SDK | Python or Node.js SDK | `pip install SpiLLI`, `npm install @synaptrix/spilli` | [SpiLLI SDK Installation Guide](https://github.com/synaptrixai/SpiLLI/wiki/SpiLLI-SDK-Installation-Guide) |
 | Explore SDK tutorials | Docker tutorials environment | `docker compose up` in this repo | [SpiLLI SDK Docker Tutorials](https://github.com/synaptrixai/SpiLLI/wiki/SpiLLI-SDK-Docker-Tutorials) |
 
