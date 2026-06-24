@@ -5,10 +5,26 @@ ENV DEBIAN_FRONTEND=noninteractive
 RUN apt-get update && \
     apt-get install -y --no-install-recommends \
       ca-certificates \
+      wget \
       bash \
-      libvulkan1 \
+      libstdc++6 \
+      tini \
       libcurl4 && \
     rm -rf /var/lib/apt/lists/*
+
+RUN wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2404/x86_64/cuda-keyring_1.1-1_all.deb && \
+    dpkg -i cuda-keyring_1.1-1_all.deb && \
+    rm -f cuda-keyring_1.1-1_all.deb && \
+    apt-get update && \
+    apt-get install -y --no-install-recommends \
+      libcudart12 \
+      libcublas12 \
+      libcublaslt12 \
+      libnccl2 && \
+    rm -rf /var/lib/apt/lists/*
+
+ENV NVIDIA_VISIBLE_DEVICES=all
+ENV NVIDIA_DRIVER_CAPABILITIES=compute,utility
 
 COPY dist/SpiLLIHost.deb /tmp/SpiLLIHost.deb
 
@@ -22,4 +38,4 @@ WORKDIR /usr/bin/SpiLLIHost
 COPY Dockerfiles/spillihost-entrypoint.sh /usr/local/bin/spillihost-entrypoint.sh
 RUN chmod +x /usr/local/bin/spillihost-entrypoint.sh
 
-ENTRYPOINT ["/usr/local/bin/spillihost-entrypoint.sh"]
+ENTRYPOINT ["/usr/bin/tini", "--", "/usr/local/bin/spillihost-entrypoint.sh"]

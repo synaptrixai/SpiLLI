@@ -90,7 +90,7 @@ jobs:
           set -euo pipefail
           mkdir -p dist
 
-          asset_url="$(gh api "repos/${GITHUB_REPOSITORY}/releases/tags/${RELEASE_TAG}" --jq '.assets[] | select(.name | test("SpiLLIHost-.*-Linux-SpiLLIHost\\.deb$")) | .browser_download_url' | head -n 1)"
+          asset_url="$(gh api "repos/${GITHUB_REPOSITORY}/releases/tags/${RELEASE_TAG}" --jq '.assets[] | select(.name | test("SpiLLIHost-.*-Docker-Linux-SpiLLIHost\\.deb$")) | .browser_download_url' | head -n 1)"
 
           if [[ -z "$asset_url" ]]; then
             echo "Could not locate SpiLLIHost Linux .deb asset for tag ${RELEASE_TAG}." >&2
